@@ -987,7 +987,7 @@ def test_evolved_functions_on_sonar(missing_rate=0.10, missing_mechanism="MAR",
     out_name = f"evo_logs/winner_run_{int(missing_rate * 100)}pct_{missing_mechanism}_{int(time.time())}.json"
     with open(out_name, "w") as f:
         json.dump(report, f, indent=2)
-    print(f"\n✅ Saved run report to: {out_name}")
+    print(f"\n Saved run report to: {out_name}")
 
     print(f"\nValidation fitness: {best_activation['fitness']:.4f}")
     print(f"Complexity: {count_nodes(best_activation['tree'])} nodes")
@@ -1075,11 +1075,11 @@ def test_evolved_functions_on_sonar(missing_rate=0.10, missing_mechanism="MAR",
             f"{int(missing_rate * 100)}pct_{missing_mechanism}.png"
         )
         plt.savefig(filename, dpi=150, bbox_inches='tight')
-        print(f"✅ Saved visualization to: {filename}")
+        print(f"Saved visualization to: {filename}")
         plt.close()
 
     except Exception as e:
-        print(f"⚠️ Could not create visualization: {e}")
+        print(f"Could not create visualization: {e}")
 
     print("\nStep 6: Training final model with best activation...")
 
@@ -1204,13 +1204,13 @@ def test_evolved_functions_on_sonar(missing_rate=0.10, missing_mechanism="MAR",
 
     best_test = max(test_acc, relu_test_acc, swish_test_acc)
     if test_acc == best_test:
-        print("\n✅ Evolved activation is THE BEST! Beats both ReLU and Swish!")
+        print("\nEvolved activation is THE BEST! Beats both ReLU and Swish!")
     elif test_acc > relu_test_acc:
-        print("\n✅ Evolved activation beats ReLU!")
+        print("\nEvolved activation beats ReLU!")
         if swish_test_acc == best_test:
-            print("⚠️ But Swish performed slightly better.")
+            print(" But Swish performed slightly better.")
     else:
-        print("\n⚠️ Baselines performed better this time.")
+        print("\nBaselines performed better this time.")
         if swish_test_acc > relu_test_acc:
             print(f"   Best: Swish ({swish_test_acc:.4f})")
         else:
@@ -1353,7 +1353,7 @@ def run_repeated_experiments(num_runs: int, missing_rate: float, missing_mechani
             final_patience=final_patience,
         )
         if res is None:
-            print("⚠️ Run returned None, skipping.")
+            print("Run returned None, skipping.")
             continue
 
         for m in metrics:
